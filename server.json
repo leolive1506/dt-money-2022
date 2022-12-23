@@ -23,6 +23,14 @@
       "category": "Educação",
       "price": 1980,
       "createdAt": "2018-12-09T09:00:00.000Z"
+    },
+    {
+      "description": "Pizza",
+      "price": 80,
+      "category": "Alimentação",
+      "type": "outcome",
+      "createdAt": "2022-12-23T21:34:31.463Z",
+      "id": 4
     }
   ]
 }
