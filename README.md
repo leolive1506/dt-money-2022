@@ -14,3 +14,10 @@
     transition: background-color 0.2s;
   }
 ```
+  - Separa linhas table
+```css
+table {
+  border-collapse: separate;
+  border-spacing: 0 0.5rem;
+}
+```
