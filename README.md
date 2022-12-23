@@ -1,3 +1,45 @@
+# Acessibilidade
+- Ex de libs
+  - radix-ui (usado no curso)
+  - ariakit
+  - headlessui
+  - chakra-ui
+
+## Radix ui
+- Cada component é instalado separadamente
+```sh
+npm install @radix-ui/react-dialog
+```
+```tsx
+// antes
+<NewTransactionButton>Nova transação</NewTransactionButton>
+// dps
+<Dialog.Root>
+  <Dialog.Trigger asChild>
+    <NewTransactionButton>
+      Nova transação
+    </NewTransactionButton>
+  </Dialog.Trigger>
+  <Dialog.Portal>
+    <Dialog.Overlay>
+      <Dialog.Content>
+        <Dialog.Title>Nova transação</Dialog.Title>
+        <Dialog.Close />
+      </Dialog.Content>
+    </Dialog.Overlay>
+  </Dialog.Portal>
+</Dialog.Root>
+```
+- root -> provider
+- trigger -> é um button por padrão que faz abrir ou fechar
+  - Caso queira que o botao seja elemnto filho usar propridade **asChild**
+- Portal -> uma funcionalidade do react
+  - Forma de renderizar um elemento filho dentro de outro local da dom 
+    - ex: modal fica por cima de toda pá gina e somente o header
+- Overlay -> fundo preto
+- Content -> conteudo
+  - Tem algumas pre-definições de conteúdo como Title, Description, Close
+
 # Dicas gerais
 - css
   - transition hover
