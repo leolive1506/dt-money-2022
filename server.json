@@ -13,7 +13,15 @@
       "description": "Hamburger",
       "type": "outcome",
       "category": "Alimentação",
-      "price": 50,
+      "price": 60,
+      "createdAt": "2018-12-09T09:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "description": "Ignite Rocketseat",
+      "type": "outcome",
+      "category": "Educação",
+      "price": 1980,
       "createdAt": "2018-12-09T09:00:00.000Z"
     }
   ]
