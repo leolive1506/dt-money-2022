@@ -40,6 +40,12 @@ npm install @radix-ui/react-dialog
 - Content -> conteudo
   - Tem algumas pre-definições de conteúdo como Title, Description, Close
 
+# Json server
+```sh
+# -w -> monitora mudança no arquivo
+npx json-server server.json -w -d 500
+```
+
 # Dicas gerais
 - css
   - transition hover
