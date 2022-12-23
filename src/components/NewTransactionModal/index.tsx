@@ -1,18 +1,23 @@
-import { CloseButton, Content, Overlay, TransactionType, TransactionTypeButton } from "./styles";
-import { ArrowCircleDown, ArrowCircleUp, X } from "phosphor-react";
-import * as Dialog from "@radix-ui/react-dialog";
+import {
+  CloseButton,
+  Content,
+  Overlay,
+  TransactionType,
+  TransactionTypeButton,
+} from './styles'
+import { ArrowCircleDown, ArrowCircleUp, X } from 'phosphor-react'
+import * as Dialog from '@radix-ui/react-dialog'
 import { useForm, Controller } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod';
+import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
-import { api } from "../../lib/axios";
-import { useContext } from "react";
-import { TransactionsContext } from "../../contexts/TransactionsContext";
+import { useContext } from 'react'
+import { TransactionsContext } from '../../contexts/TransactionsContext'
 
 const newTransactionFormSchema = z.object({
   description: z.string(),
   price: z.number(),
   category: z.string(),
- type: z.enum(['income', 'outcome'])
+  type: z.enum(['income', 'outcome']),
 })
 
 type NewTransactionFormInput = z.infer<typeof newTransactionFormSchema>
@@ -24,9 +29,7 @@ export function NewTransactionModal() {
     register,
     handleSubmit,
     reset,
-    formState: {
-      isSubmitting
-    }
+    formState: { isSubmitting },
   } = useForm<NewTransactionFormInput>({
     resolver: zodResolver(newTransactionFormSchema),
   })
@@ -47,19 +50,13 @@ export function NewTransactionModal() {
           </CloseButton>
 
           <form onSubmit={handleSubmit(handleCreateNewTransaction)}>
-            <input
-              placeholder="Descrição"
-              {...register('description')}
-            />
+            <input placeholder="Descrição" {...register('description')} />
             <input
               type="number"
               placeholder="Preço"
               {...register('price', { valueAsNumber: true })}
             />
-            <input
-              placeholder="Categoria" 
-              {...register('category')}
-            />
+            <input placeholder="Categoria" {...register('category')} />
             <Controller
               control={control}
               name="type"
@@ -67,7 +64,7 @@ export function NewTransactionModal() {
                 <TransactionType
                   onValueChange={field.onChange}
                   value={field.value}
-                >            
+                >
                   <TransactionTypeButton value="income" variant="income">
                     <ArrowCircleUp size={24} />
                     Entrada
@@ -79,11 +76,8 @@ export function NewTransactionModal() {
                 </TransactionType>
               )}
             />
-            
-            <button
-              type="submit"
-              disabled={isSubmitting}
-            >
+
+            <button type="submit" disabled={isSubmitting}>
               Cadastrar
             </button>
           </form>

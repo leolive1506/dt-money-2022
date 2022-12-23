@@ -1,13 +1,20 @@
-import { ReactNode, createContext, useEffect, useState } from "react"
-import { api } from "../lib/axios";
+import { ReactNode, createContext, useEffect, useState } from 'react'
+import { api } from '../lib/axios'
 
 interface Transaction {
-  id: number;
-  description: string;
-  type: 'income' | 'outcome';
-  price: number;
-  category: string;
-  createdAt: string;
+  id: number
+  description: string
+  type: 'income' | 'outcome'
+  price: number
+  category: string
+  createdAt: string
+}
+
+interface CreateTransactionInput {
+  description: string
+  price: number
+  category: string
+  type: 'income' | 'outcome'
 }
 
 interface TransactionsContextType {
@@ -22,23 +29,16 @@ interface TransactionProviderProps {
   children: ReactNode
 }
 
-interface CreateTransactionInput {
-  description: string;
-  price: number
-  category: string;
-  type: 'income' | 'outcome';
-}
-
 export function TransactionProvider({ children }: TransactionProviderProps) {
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [transactions, setTransactions] = useState<Transaction[]>([])
 
   async function fetchTransactions(query?: string) {
     const response = await api.get('transactions', {
       params: {
         _sort: 'createdAt',
         _order: 'desc',
-        q: query
-      }
+        q: query,
+      },
     })
 
     setTransactions(response.data)
@@ -47,10 +47,10 @@ export function TransactionProvider({ children }: TransactionProviderProps) {
   async function createTransaction(data: CreateTransactionInput) {
     const response = await api.post('transactions', {
       ...data,
-      createdAt: new Date()
+      createdAt: new Date(),
     })
 
-    setTransactions(state => [response.data, ...state])
+    setTransactions((state) => [response.data, ...state])
   }
 
   useEffect(() => {
@@ -62,7 +62,7 @@ export function TransactionProvider({ children }: TransactionProviderProps) {
       value={{
         transactions,
         fetchTransactions,
-        createTransaction
+        createTransaction,
       }}
     >
       {children}
