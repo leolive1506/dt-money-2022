@@ -69,3 +69,40 @@ table {
   border-spacing: 0 0.5rem;
 }
 ```
+
+## React hook form
+- Inserir informação que não vem através de um input
+  - Preciso utilizar api react hook form de controle
+    - Uncontroller -> busca informação somente quando realizar submit
+    - Controlled -> anota valor toda vez que usuário mudar essa informação
+```tsx
+// antes
+<TransactionType>            
+  <TransactionTypeButton value="income" variant="income">
+    <ArrowCircleUp size={24} />
+    Entrada
+  </TransactionTypeButton>
+  <TransactionTypeButton value="outcome" variant="outcome">
+    <ArrowCircleDown size={24} />
+    Saída
+  </TransactionTypeButton>
+</TransactionType>
+
+// dps
+<Controller
+  control={control}
+  name="type"
+  render={({ field }) => (
+    <TransactionType onValueChange={field.onChange}>            
+      <TransactionTypeButton value="income" variant="income">
+        <ArrowCircleUp size={24} />
+        Entrada
+      </TransactionTypeButton>
+      <TransactionTypeButton value="outcome" variant="outcome">
+        <ArrowCircleDown size={24} />
+        Saída
+      </TransactionTypeButton>
+    </TransactionType>
+  )}
+/>
+```
