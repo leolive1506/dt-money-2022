@@ -1,4 +1,3 @@
-import { useContext } from 'react'
 import { TransactionsContext } from '../contexts/TransactionsContext'
 import { useContextSelector } from 'use-context-selector'
 
