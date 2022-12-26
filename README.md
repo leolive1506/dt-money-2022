@@ -39,7 +39,7 @@ npm install @radix-ui/react-dialog
 - Overlay -> fundo preto
 - Content -> conteudo
   - Tem algumas pre-definições de conteúdo como Title, Description, Close
-
+  
 # Json server
 ```sh
 # -w -> monitora mudança no arquivo
