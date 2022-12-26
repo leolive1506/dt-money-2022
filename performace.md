@@ -100,3 +100,55 @@ export const SearchForm = memo(SearchFormComponent)
 ```
   
 - Tomar cuidado no uso pois pode ser menos performático uso do memo do que a própria renderização padrão react
+
+# useMemo
+- Evitar que variavel seja recriada do zero (como se fosse useCallback para veriável
+  - Caso variável seja repassada para vários outros components, indicado uso
+- Antes
+```tsx
+const summary = transactions.reduce(
+  (acc, transaction) => {
+    if (transaction.type === 'income') {
+      acc.income += transaction.price
+    } else {
+      acc.outcome += transaction.price
+    }
+
+    acc.total = acc.income - acc.outcome
+
+    return acc
+  },
+  {
+    income: 0,
+    outcome: 0,
+    total: 0,
+  },
+  )
+```
+
+- Depois
+  - primero parametro função que retorna valor da váriavel
+  - Segundo array de dependencia de quando deve recriar a váriavel
+
+```tsx
+const summary = useMemo(() => {
+  return transactions.reduce(
+    (acc, transaction) => {
+      if (transaction.type === 'income') {
+        acc.income += transaction.price
+      } else {
+        acc.outcome += transaction.price
+      }
+
+      acc.total = acc.income - acc.outcome
+
+      return acc
+    },
+    {
+      income: 0,
+      outcome: 0,
+      total: 0,
+    },
+  )
+}, [transactions])
+```
